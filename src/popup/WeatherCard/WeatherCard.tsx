@@ -7,7 +7,7 @@ import {
   Box,
   Button,
 } from '@material-ui/core';
-import { fetchOpenWeatherData, OpenWeatherData } from '../../utils/api';
+import { fetchOpenWeatherData, OpenWeatherData, OpenWeatherTempScale } from '../../utils/api';
 
 const WeatherCardContainer: React.FC<{
   children: React.ReactNode;
@@ -27,18 +27,19 @@ type WeatherCardState = 'loading' | 'error' | 'ready';
 
 const WeatherCard: React.FC<{
   city: string;
+  tempScale: OpenWeatherTempScale
   onDelete?: () => void;
-}> = ({ city, onDelete }) => {
+}> = ({ city, tempScale, onDelete }) => {
   const [weatherData, setWeatherData] = useState<OpenWeatherData | null>(null);
   const [cardState, setCardState] = useState<WeatherCardState>('loading');
   useEffect(() => {
-    fetchOpenWeatherData(city)
+    fetchOpenWeatherData(city, tempScale)
       .then((data) => {
         setWeatherData(data);
         setCardState('ready');
       })
       .catch((err) => setCardState('error'));
-  }, [city]);
+  }, [city, tempScale]);
 
   if (cardState == 'loading' || cardState == 'error') {
     return (
