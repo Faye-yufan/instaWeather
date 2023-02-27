@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
-    "name": "React Extension",
-    "description": "Chrome Extension in React!",
+    "name": "InstaWeather",
+    "description": "Weather Chrome Extension in React!",
     "version": "1.0.0",
     "icons": {
         "16": "icon.png",
@@ -10,11 +10,11 @@
     },
     "action": {
         "default_popup": "popup.html",
-        "default_title": "React Extension",
+        "default_title": "InstaWeather",
         "default_icon": "icon.png"
     },
     "options_page": "options.html",
-    "permissions":["storage", "alarms", "notifications"],
+    "permissions":["contextMenus", "storage", "alarms", "notifications"],
     "background": {
         "service_worker": "background.js"
     },
